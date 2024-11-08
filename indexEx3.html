@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>WebGL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="mainEx3.js" defer></script>
+    <script id="vertex-shader-2d" type="notjs">
+        attribute vec2 position;
+        attribute vec3 color;
+        varying vec3 vcolor;
+        uniform float espessura;
+        void main() {
+            gl_Position = vec4(position, 0, 1);
+            vcolor = color;
+            gl_PointSize = espessura;
+        }
+    </script>
+    <script id="fragment-shader-2d" type="notjs">
+        precision mediump float;
+        varying vec3 vcolor;
+        void main() {
+            gl_FragColor = vec4(vcolor, 1.0);
+        }
+    </script>
+</head>
+<body>
+    <h3>Clique com o mouse e digite os números de 0 a 9 para mudar de cor. Para desenhar uma reta, aperte 'r'. Para desenhar um triângulo, aperte 't'. Para alterar a espessura, aperte 'e'.
+        Para alterar a cor, aperte 'k'. Lembre-se que sempre que você apertar 'r' ou 't' o modo default é o de mudar cor, assim sempre que quiser mudar a espessura de uma nova figura, aperte 'e'.
+    </h3>
+    <canvas id="canvas" width="500" height="500"></canvas>
+</body>
+</html>
